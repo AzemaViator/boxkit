@@ -28,8 +28,7 @@ jobs:
       fail-fast: false
       matrix:
         containerfile: 
-          - boxkit
-       #- fedora-example # Included as an example to demonstrate multi-image builds, uncomment to build the fedora-example container too
+          - devbox
     steps:
       # Clone code to runner
       - name: Checkout
@@ -98,7 +97,7 @@ jobs:
         env:
           TAGS: ${{ steps.push.outputs.digest }}
           COSIGN_EXPERIMENTAL: false
-          COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
+          COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
 
       - name: Echo outputs
         run: |

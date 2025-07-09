@@ -1,0 +1,28 @@
+FROM scratch AS ctx
+COPY packages /packages/
+COPY scripts /scripts/
+
+FROM ghcr.io/ublue-os/fedora-toolbox:latest
+
+LABEL com.github.containers.toolbox="true" \
+      usage="This image is meant to be used with the toolbox or distrobox command" \
+      summary="An example ContainerFile to demonstrate multiple image builds." \
+      authors="azema"
+
+ENV NVM_VERSION="v0.40.3"
+ENV NVM_DIR="/usr/local/nvm"
+ENV COREPACK_VERSION="0.33.0"
+ENV YARN_VERSION="4.9.2"
+ENV PNPM_VERSION="10.12.4"
+ENV NPM_VERSION="11.4.2"
+ENV BUN_VERSION="bun-v1.2.18"
+ENV DENO_VERSION="v2.4.1"
+
+COPY system-files/devbox /
+
+# Run the setup scripts
+RUN --mount=type=cache,dst=/var/cache \
+    --mount=type=cache,dst=/var/log \
+    --mount=type=bind,from=ctx,source=/,target=/ctx \
+    --mount=type=tmpfs,dst=/tmp \
+    /ctx/scripts/devbox.sh

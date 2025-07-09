@@ -1,10 +1,10 @@
 #!/bin/sh
 
 # Update the container and install packages
-dnf5 copr enable atim/starship
+dnf5 copr enable -y atim/starship
 dnf5 -y config-manager addrepo --from-repofile=https://download.docker.com/linux/fedora/docker-ce.repo
 dnf5 update -y
-grep -v '^#' ./devbox.packages | xargs dnf5 install -y
+grep -v '^#' /ctx/packages/devbox.packages | xargs dnf5 install -y
 
 BASH_COMP_DIR="/usr/share/bash-completion/completions"
 ZSH_COMP_DIR="/usr/share/zsh/site-functions"

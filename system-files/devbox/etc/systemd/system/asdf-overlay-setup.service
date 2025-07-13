@@ -1,0 +1,20 @@
+[Unit]
+Description=Create + activate asdf overlay mount
+ConditionFirstBoot=yes
+ConditionVirtualization=container
+ConditionEnvironment=ASDF_SYSTEM_DATA_DIR
+ConditionEnvironment=HOME
+ConditionPathIsDirectory=/var/lib/asdf-overlay
+After=local-fs.target
+Wants=first-boot-complete.target
+
+[Service]
+Type=oneshot
+PassEnvironment=ASDF_SYSTEM_DATA_DIR
+PassEnvironment=HOME
+# Keep the call ultra-simple; the script handles everything.
+ExecStart=/usr/local/lib/asdf-overlay-setup.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

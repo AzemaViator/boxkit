@@ -8,10 +8,11 @@ export MISE_PROFILED=1
 
 mise install --silent --quiet >/dev/null 2>&1 || true
 
-_mise_shell="${SHELL##*/}"
-case "$_mise_shell" in
-  bash|zsh) : ;;
-  *) _mise_shell="zsh" ;;
+# Detect actual shell name (bash or zsh)
+case "${ZSH_VERSION:+zsh}${BASH_VERSION:+bash}" in
+  zsh*) _mise_shell="zsh" ;;
+  bash*) _mise_shell="bash" ;;
+  *) _mise_shell="sh" ;;
 esac
 
 case "$-" in

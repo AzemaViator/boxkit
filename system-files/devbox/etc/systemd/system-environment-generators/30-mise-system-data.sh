@@ -8,12 +8,12 @@ emit() {
 
 asdf_dir=
 while IFS='=' read -r k v; do
-    [[ $k == ASDF_SYSTEM_DATA_DIR ]] && { asdf_dir=$v; break; }
+    [[ $k == MISE_SYSTEM_DATA_DIR ]] && { asdf_dir=$v; break; }
 done < <(tr '\0' '\n' </proc/1/environ)
 
 [[ -z $asdf_dir ]] && exit 0
 
-emit ASDF_SYSTEM_DATA_DIR "$asdf_dir"
+emit MISE_SYSTEM_DATA_DIR "$asdf_dir"
 
 shims_dir="$asdf_dir/shims"
 if [[ -d $shims_dir ]]; then

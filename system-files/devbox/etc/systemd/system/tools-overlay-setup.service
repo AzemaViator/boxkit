@@ -1,19 +1,18 @@
 [Unit]
-Description=Create + activate asdf overlay mount
+Description=Create tools overlay
 ConditionVirtualization=container
-ConditionEnvironment=ASDF_SYSTEM_DATA_DIR
+ConditionEnvironment=MISE_SYSTEM_DATA_DIR
 ConditionEnvironment=DISTROBOX_USER
 ConditionEnvironment=DISTROBOX_USER_HOME
-ConditionPathIsDirectory=/var/lib/asdf-overlay
+ConditionPathIsDirectory=/var/lib/tool-overlay
 After=local-fs.target
-Wants=first-boot-complete.target
 
 [Service]
 Type=oneshot
-PassEnvironment=ASDF_SYSTEM_DATA_DIR
+PassEnvironment=MISE_SYSTEM_DATA_DIR
 PassEnvironment=DISTROBOX_USER
 PassEnvironment=DISTROBOX_USER_HOME
-ExecStart=/usr/local/lib/asdf-overlay-setup.sh
+ExecStart=/usr/local/lib/tool-overlay-setup.sh
 RemainAfterExit=yes
 
 [Install]

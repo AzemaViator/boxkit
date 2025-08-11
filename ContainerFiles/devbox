@@ -9,19 +9,12 @@ LABEL com.github.containers.toolbox="true" \
       summary="An example ContainerFile to demonstrate multiple image builds." \
       authors="azema"
 
-ARG ASDF_VERSION="0.18.0"
-ARG ASDF_DATA_DIR="/usr/local/asdf-data"
-ENV ASDF_SYSTEM_DATA_DIR="${ASDF_DATA_DIR}"
+# TODO change this
+ARG MISE_DATA_DIR="/usr/local/mise-data"
+ENV MISE_SYSTEM_DATA_DIR=${MISE_DATA_DIR}
 
 ARG EZA_VERSION="0.22.0"
 
-ARG NODE_VERSION="22.17.0"
-ARG COREPACK_VERSION="0.33.0"
-ARG NPM_VERSION="11.4.2"
-ARG YARN_VERSION="4.9.2"
-ARG PNPM_VERSION="10.12.4"
-ARG BUN_VERSION="1.2.18"
-ARG DENO_VERSION="2.4.1"
 ARG RUST_VERSION="1.88.0"
 ARG GOLANG_VERSION="1.24.5"
 ARG AWSCLI_VERSION="2.27.50"
@@ -37,4 +30,4 @@ RUN --mount=type=cache,dst=/var/cache \
     --mount=type=tmpfs,dst=/tmp \
     /ctx/scripts/devbox.sh
 
-Volume /var/lib/asdf-overlay
+VOLUME /var/lib/tool-overlay

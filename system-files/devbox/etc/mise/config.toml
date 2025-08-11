@@ -1,0 +1,46 @@
+[settings]
+pin = true
+experimental = true
+
+[settings.npm]
+bun = true
+
+[tools]
+cosign = "2.5.2"
+bun = "1.2.18"
+deno = "2.4.1"
+go = "1.24.5"
+java = ["temurin-24.0.1+9", "zulu-24.30.11.0"]
+node = "24.4.0"
+npm = "11.4.2"
+pnpm = "10.13.1"
+slsa-verifier = "2.7.1"
+usage = "2.2.0"
+yarn = "4.9.2"
+rust = "1.89.0"
+
+[hooks]
+postinstall = '''
+MISE_DATA_ROOT="${MISE_DATA_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/mise}"
+
+for version_dir in "$MISE_DATA_ROOT"/installs/node/*; do
+  [[ -d "$version_dir" ]] || continue
+  [[ -L "$version_dir" ]] && continue
+
+  version=$(basename $version_dir)
+  bin_dir="$version_dir/bin"
+  [[ -d "$bin_dir" ]] || continue
+
+  removed_any=false
+
+  for base in npm npx corepack; do
+    f="$bin_dir/$base"
+    [[ -e "$f" ]] || continue
+
+    rm -f -- "$f"
+    echo "🗑️ Stripping $base from node version $version"
+  done
+done
+
+mise reshim node >/dev/null
+'''

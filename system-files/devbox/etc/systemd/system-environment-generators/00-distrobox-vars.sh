@@ -9,7 +9,7 @@ emit() {
 _seen_home=
 while IFS='=' read -r key val; do
     case "$key" in
-        SHELL)              emit DISTROBOX_USER_SHELL         "$val" ;;
+        SHELL)              emit DISTROBOX_USER_SHELL          "$val" ;;
         HOSTNAME)           emit DISTROBOX_CONTAINER_HOSTNAME  "$val" ;;
         HOME)
             emit DISTROBOX_USER_HOME "$val"

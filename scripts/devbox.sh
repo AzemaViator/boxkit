@@ -11,4 +11,4 @@ dnf5 -y config-manager addrepo --from-repofile=https://mise.jdx.dev/rpm/mise.rep
 dnf5 update -y
 grep -v '^#' /ctx/packages/devbox.packages | xargs dnf5 install -y
 
-systemctl enable tool-overlay-setup.service
+systemctl enable tools-overlay-setup.service

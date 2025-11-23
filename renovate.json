@@ -14,27 +14,6 @@
       ],
       "packageNameTemplate": "{{packageName}}",
       "depNameTemplate": "{{depName}}"
-    },
-    {
-      "customType": "regex",
-      "managerFilePatterns": [
-        "/(^|/)(mise(\\.devbox)?\\.toml|system-files/devbox/etc/mise/config\\.toml)$/"
-      ],
-      "matchStrings": [
-        "# renovate: datasource=sdkmanJava depName=(?<depName>\\S+)\\s*[\\r\\n]+\\s*\"(?<currentValue>[^\"]+)\""
-      ],
-      "packageNameTemplate": "java",
-      "depNameTemplate": "{{depName}}",
-      "datasourceTemplate": "sdkmanJava"
     }
-  ],
-  "customDatasources": {
-    "sdkmanJava": {
-      "defaultRegistryUrlTemplate": "https://api.sdkman.io/2/candidates/java/versions/list",
-      "format": "json",
-      "transform": {
-        "versions": "versions[].identifier"
-      }
-    }
-  }
+  ]
 }

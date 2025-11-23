@@ -6,8 +6,8 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": [
-        "(^|/)(mise(\\.devbox)?\\.toml|system-files/devbox/etc/mise/config\\.toml)$"
+      "managerFilePatterns": [
+        "/(^|/)(mise(\\.devbox)?\\.toml|system-files/devbox/etc/mise/config\\.toml)$/"
       ],
       "matchStrings": [
         "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\s*[\\r\\n]+(?<packageName>[^=\\n]+?)\\s*=\\s*\"(?<currentValue>[^\"]+)\""
@@ -17,8 +17,8 @@
     },
     {
       "customType": "regex",
-      "fileMatch": [
-        "(^|/)(mise(\\.devbox)?\\.toml|system-files/devbox/etc/mise/config\\.toml)$"
+      "managerFilePatterns": [
+        "/(^|/)(mise(\\.devbox)?\\.toml|system-files/devbox/etc/mise/config\\.toml)$/"
       ],
       "matchStrings": [
         "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\s*[\\r\\n]+\\s*\"(?<currentValue>[^\"]+)\""

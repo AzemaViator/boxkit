@@ -23,7 +23,7 @@ slsa-verifier = "2.7.1"
 usage = "2.8.0"
 "aqua:yarnpkg/berry" = "4.11.0"
 rust = "1.91.1"
-# renovate: datasource=github-releases depName=openai/codex
+# renovate: datasource=npm depName=@openai/codex
 codex = "0.63.0"
 jq = "1.8.1"
 

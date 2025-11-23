@@ -1,6 +1,14 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
+    "config:best-practices"
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": ["mise\\.toml$"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\s*[\\r\\n]+[^=]+?=\\s*\"(?<currentValue>[^\"]+)\""
+      ]
+    }
   ]
 }

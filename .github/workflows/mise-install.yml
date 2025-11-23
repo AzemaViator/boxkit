@@ -1,0 +1,32 @@
+name: verify-mise-install
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - system-files/devbox/etc/mise/config.toml
+      - .github/workflows/mise-install.yml
+
+jobs:
+  mise-install:
+    name: Validate mise install
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6
+
+      - name: Set up mise
+        uses: jdx/mise-action@v2
+        with:
+          cache: true
+
+      - name: Install devbox toolchain
+        env:
+          MISE_CONFIG_FILE: system-files/devbox/etc/mise/config.toml
+          MISE_EXPERIMENTAL: 1
+          MISE_YES: 1
+        run: mise install

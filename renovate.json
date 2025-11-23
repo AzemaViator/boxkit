@@ -12,7 +12,7 @@
         "/(^|/)\\.?mise/config\\.toml$/"
       ],
       "matchStrings": [
-        "# renovate: datasource=(?<datasource>\\S+)(?: depName=(?<depName>[\\w@./-]+))?(?: packageName=(?<packageNameComment>[\\w@./-]+))?(?: versioning=(?<versioning>[a-z-]+))?\\s*[\\r\\n]+(?<packageName>[^\\s=]+)\\s*=\\s*\"(?<currentValue>[^\"]+)\"\n"
+        "# renovate: datasource=(?<datasource>\\S+)(?: depName=(?<depName>[\\w@./-]+))?(?: packageName=(?<packageName>[\\w@./-]+))?(?: versioning=(?<versioning>[a-z-]+))?\\s*[\\r\\n]+(?<varName>[^\\s=]+)\\s*=\\s*\"(?<currentValue>[^\"]+)\""
       ]
     }
   ]

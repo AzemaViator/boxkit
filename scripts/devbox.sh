@@ -8,7 +8,7 @@ dnf5 -y config-manager addrepo --from-repofile=https://download.docker.com/linux
 dnf5 -y config-manager addrepo --from-repofile=https://mise.jdx.dev/rpm/mise.repo
 
 # -.- As this project is trying to be an isolated devbox xdg-utils-distrobox causes major issues
-dnf5 swap xdg-utils-distrobox xdg-utils
+dnf5 swap xdg-utils-distrobox xdg-utils -y
 
 # Install updates and packages
 dnf5 update -y

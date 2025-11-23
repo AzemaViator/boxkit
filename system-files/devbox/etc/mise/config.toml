@@ -26,6 +26,10 @@ rust = "1.91.1"
 # renovate: datasource=npm depName=@openai/codex
 codex = "0.63.0"
 jq = "1.8.1"
+eza = "0.22.0"
+awscli = "2.32.3"
+kubectl = "1.33.2"
+terraform = "1.12.2"
 
 [hooks]
 postinstall = '''

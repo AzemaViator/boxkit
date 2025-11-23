@@ -1,7 +1,6 @@
 [Unit]
 Description=Create tools overlay
 ConditionVirtualization=container
-ConditionEnvironment=MISE_SYSTEM_DATA_DIR
 ConditionEnvironment=DISTROBOX_USER
 ConditionEnvironment=DISTROBOX_USER_HOME
 ConditionPathIsDirectory=/var/lib/tool-overlay
@@ -9,7 +8,6 @@ After=local-fs.target
 
 [Service]
 Type=oneshot
-PassEnvironment=MISE_SYSTEM_DATA_DIR
 PassEnvironment=DISTROBOX_USER
 PassEnvironment=DISTROBOX_USER_HOME
 ExecStart=/usr/local/lib/tool-overlay-setup.sh

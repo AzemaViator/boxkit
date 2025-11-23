@@ -9,14 +9,6 @@ LABEL com.github.containers.toolbox="true" \
       summary="An example ContainerFile to demonstrate multiple image builds." \
       authors="azema"
 
-# TODO change this
-ARG MISE_DATA_DIR="/usr/local/mise-data"
-ENV MISE_SYSTEM_DATA_DIR=${MISE_DATA_DIR}
-
-ARG EZA_VERSION="0.22.0"
-
-ARG RUST_VERSION="1.88.0"
-ARG GOLANG_VERSION="1.24.5"
 ARG AWSCLI_VERSION="2.27.50"
 ARG KUBECTL_VERSION="1.33.2"
 ARG TERRAFORM_VERSION="1.12.2"

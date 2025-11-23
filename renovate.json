@@ -7,13 +7,25 @@
     {
       "customType": "regex",
       "managerFilePatterns": [
-        "/(^|/)(mise(\\.devbox)?\\.toml|system-files/devbox/etc/mise/config\\.toml)$/"
+        "/(^|/)\\.?mise\\.toml$/",
+        "/(^|/)\\.?mise/config\\.toml$/"
       ],
       "matchStrings": [
         "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\s*[\\r\\n]+(?<packageName>[^=\\n]+?)\\s*=\\s*\"(?<currentValue>[^\"]+)\""
       ],
       "packageNameTemplate": "{{packageName}}",
       "depNameTemplate": "{{depName}}"
+    },
+    {
+      "customType": "regex",
+      "description": "Update version strings in mise config.toml",
+      "managerFilePatterns": [
+        "/(^|/)\\.?mise\\.toml$/",
+        "/(^|/)\\.?mise/config\\.toml$/"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>[\\w\\-/\\.]+))?(?: packageName=(?<packageName>[\\w\\-/\\.]+))?(?: versioning=(?<versioning>[a-z-]+))?\\s+[\\w\\-]+\\s*=\\s*\"(?<currentValue>[^\"]+)\""
+      ]
     }
   ]
 }

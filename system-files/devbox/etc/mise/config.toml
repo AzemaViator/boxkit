@@ -18,7 +18,7 @@ node = "24.11.1"
 # renovate: datasource=npm depName=npm
 npm = "11.6.3"
 pnpm = "10.23.0"
-# renovate: datasource=github-releases depName=slsa-framework/slsa-verifier
+# renovate: datasource=github-releases depName=slsa-verifier packageName=slsa-framework/slsa-verifier
 slsa-verifier = "2.7.1"
 usage = "2.8.0"
 "aqua:yarnpkg/berry" = "4.11.0"

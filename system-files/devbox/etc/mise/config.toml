@@ -11,9 +11,9 @@ bun = "1.3.3"
 deno = "2.5.6"
 go = "1.25.4"
 java = [
-# renovate: datasource=github-releases depName=adoptium/temurin25-binaries
+# renovate: datasource=sdkmanJava depName=java
   "temurin-25.0.1+8.0.LTS",
-# renovate: datasource=github-releases depName=bell-sw/liberica-openjdk
+# renovate: datasource=sdkmanJava depName=java
   "zulu-24.30.11.0"
 ]
 node = "24.11.1"
@@ -23,7 +23,6 @@ pnpm = "10.23.0"
 # renovate: datasource=github-releases depName=slsa-framework/slsa-verifier
 slsa-verifier = "2.7.1"
 usage = "2.8.0"
-# renovate: datasource=github-releases depName=yarnpkg/berry
 "aqua:yarnpkg/berry" = "4.11.0"
 rust = "1.91.1"
 # renovate: datasource=github-releases depName=openai/codex

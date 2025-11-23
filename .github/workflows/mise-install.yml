@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6
 
       - name: Set up mise
-        uses: jdx/mise-action@v2
+        uses: jdx/mise-action@d16887ba50704baed7de72bd1e82e04391e4457a # v3
         with:
           cache: true
 

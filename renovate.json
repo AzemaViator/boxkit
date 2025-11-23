@@ -11,7 +11,9 @@
       ],
       "matchStrings": [
         "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\s*[\\r\\n]+(?<packageName>[^=\\n]+?)\\s*=\\s*\"(?<currentValue>[^\"]+)\""
-      ]
+      ],
+      "packageNameTemplate": "{{packageName}}",
+      "depNameTemplate": "{{depName}}"
     },
     {
       "customType": "regex",
@@ -21,7 +23,8 @@
       "matchStrings": [
         "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\s*[\\r\\n]+\\s*\"(?<currentValue>[^\"]+)\""
       ],
-      "packageNameTemplate": "java"
+      "packageNameTemplate": "java",
+      "depNameTemplate": "{{depName}}"
     }
   ]
 }

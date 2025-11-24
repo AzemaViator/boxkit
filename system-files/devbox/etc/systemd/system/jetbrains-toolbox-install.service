@@ -1,0 +1,17 @@
+[Unit]
+Description=Install JetBrains Toolbox if missing
+ConditionVirtualization=container
+ConditionEnvironment=DISTROBOX_USER
+ConditionEnvironment=DISTROBOX_USER_HOME
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+PassEnvironment=DISTROBOX_USER
+PassEnvironment=DISTROBOX_USER_HOME
+ExecStart=/usr/local/lib/jetbrains-toolbox-install.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

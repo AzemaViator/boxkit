@@ -1,0 +1,18 @@
+[Unit]
+Description=Sync JetBrains Toolbox desktop entries to host
+ConditionVirtualization=container
+ConditionEnvironment=DISTROBOX_HOST_HOME
+ConditionEnvironment=DISTROBOX_USER_HOME
+ConditionEnvironment=DISTROBOX_CONTAINER_ID
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+PassEnvironment=DISTROBOX_HOST_HOME
+PassEnvironment=DISTROBOX_USER_HOME
+PassEnvironment=DISTROBOX_CONTAINER_ID
+ExecStart=/usr/local/lib/jetbrains-desktop-sync.sh
+
+[Install]
+WantedBy=multi-user.target

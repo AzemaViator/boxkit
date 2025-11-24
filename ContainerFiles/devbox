@@ -9,10 +9,6 @@ LABEL com.github.containers.toolbox="true" \
       summary="An example ContainerFile to demonstrate multiple image builds." \
       authors="azema"
 
-ARG AWSCLI_VERSION="2.27.50"
-ARG KUBECTL_VERSION="1.33.2"
-ARG TERRAFORM_VERSION="1.12.2"
-
 COPY system-files/devbox /
 
 # Run the setup scripts

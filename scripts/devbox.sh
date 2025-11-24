@@ -15,3 +15,5 @@ dnf5 update -y
 grep -v '^#' /ctx/packages/devbox.packages | xargs dnf5 install -y
 
 systemctl enable tools-overlay-setup.service
+systemctl enable jetbrains-toolbox-install.service
+systemctl enable jetbrains-desktop-sync.timer

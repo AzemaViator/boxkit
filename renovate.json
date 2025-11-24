@@ -14,6 +14,16 @@
       "matchStrings": [
         "# renovate: datasource=(?<datasource>\\S+)(?: depName=(?<depName>[\\w@./-]+))?(?: packageName=(?<packageName>[\\w@./-]+))?(?: versioning=(?<versioning>[a-z-]+))?\\s*[\\r\\n]+(?<varName>[^\\s=]+)\\s*=\\s*\"(?<currentValue>[^\"]+)\""
       ]
+    },
+    {
+      "customType": "regex",
+      "description": "Update GitHub Desktop RPM URL in devbox packages",
+      "managerFilePatterns": [
+        "/(^|/)packages/devbox\\.packages$/"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>[\\w@./-]+)(?: versioning=(?<versioning>[a-z-]+))?\\s*[\\r\\n]+https://github\\.com/shiftkey/desktop/releases/download/(?<currentValue>release-(?<filever>[^/]+))/GitHubDesktop-linux-x86_64-\\k<filever>\\.rpm"
+      ]
     }
   ]
 }

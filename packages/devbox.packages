@@ -10,3 +10,5 @@ docker-buildx-plugin
 docker-compose-plugin
 systemd
 mise
+# renovate: datasource=github-releases depName=shiftkey/desktop versioning=loose
+https://github.com/shiftkey/desktop/releases/download/release-3.4.9-linux1/GitHubDesktop-linux-x86_64-3.4.9-linux1.rpm

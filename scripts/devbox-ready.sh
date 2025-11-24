@@ -15,11 +15,15 @@ XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 SYSTEMD_USER_DIR="${XDG_CONFIG_HOME}/systemd/user"
 AUTOSTART_DIR="${XDG_CONFIG_HOME}/autostart"
 DEVBOX_HOME="${DEVBOX_HOME:-${HOME}/projects/.devbox}"
+DEVBOX_ENTER_BIN="${HOME}/.local/bin/devbox-enter"
 TOOLBOX_BIN="${DEVBOX_HOME}/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox"
 TOOLBOX_ICON="${DEVBOX_HOME}/.local/share/JetBrains/Toolbox/bin/toolbox.svg"
 
 echo "Creating devbox container from ${INI_FILE}..."
 distrobox assemble create --replace --file "${INI_FILE}"
+
+echo "Installing devbox-enter wrapper to ${DEVBOX_ENTER_BIN}..."
+install -D -m 0755 "${REPO_ROOT}/scripts/devbox-enter" "${DEVBOX_ENTER_BIN}"
 
 echo "Configuring user systemd unit to keep ${DEVBOX_NAME} running..."
 mkdir -p "${SYSTEMD_USER_DIR}"
@@ -32,7 +36,7 @@ Wants=network-online.target
 [Service]
 Type=simple
 ExecCondition=/usr/bin/podman container exists ${DEVBOX_NAME}
-ExecStart=/usr/bin/distrobox-enter -n ${DEVBOX_NAME} -- sleep infinity
+ExecStart=${DEVBOX_ENTER_BIN} -n ${DEVBOX_NAME} -- sleep infinity
 Restart=always
 RestartSec=5
 
@@ -48,7 +52,7 @@ mkdir -p "${AUTOSTART_DIR}"
 cat > "${AUTOSTART_DIR}/jetbrains-toolbox.desktop" <<EOF
 [Desktop Entry]
 Icon=${TOOLBOX_ICON}
-Exec=/bin/sh -lc 'podman container exists ${DEVBOX_NAME} && exec distrobox-enter -n ${DEVBOX_NAME} -- ${TOOLBOX_BIN} --minimize'
+Exec=/bin/sh -lc 'podman container exists ${DEVBOX_NAME} && exec ${DEVBOX_ENTER_BIN} -n ${DEVBOX_NAME} -- ${TOOLBOX_BIN} --minimize'
 Version=1.0
 Type=Application
 Categories=Development

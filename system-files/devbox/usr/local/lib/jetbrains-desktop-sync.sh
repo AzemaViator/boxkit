@@ -9,6 +9,11 @@ CONTAINER_NAME="${DISTROBOX_CONTAINER_ID:-devbox}"
 SRC_DIR="${DISTROBOX_USER_HOME}/.local/share/applications"
 DEST_DIR="${DISTROBOX_HOST_HOME}/.local/share/applications"
 PREFIX="${CONTAINER_NAME}-"
+DEVBOX_ENTER_BIN="${DISTROBOX_HOST_HOME}/.local/bin/devbox-enter"
+# Fallback to host distrobox-enter if wrapper is missing
+if [[ ! -x "${DEVBOX_ENTER_BIN}" ]]; then
+  DEVBOX_ENTER_BIN="/usr/bin/distrobox-enter"
+fi
 
 mkdir -p "${DEST_DIR}"
 
@@ -18,7 +23,7 @@ wrap_exec() {
     return 1
   fi
   local escaped=${raw//\'/\'\"\'\"\'} # escape single quotes for bash -lc
-  printf '/usr/bin/distrobox-enter -n %s -- bash -lc '\''%s'\''' "$CONTAINER_NAME" "$escaped"
+  printf '%s -n %s -- bash -lc '\''%s'\''' "${DEVBOX_ENTER_BIN}" "$CONTAINER_NAME" "$escaped"
 }
 
 # Sync JetBrains desktop files from container to host

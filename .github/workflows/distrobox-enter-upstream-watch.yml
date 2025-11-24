@@ -1,0 +1,55 @@
+name: distrobox-enter upstream watch
+
+on:
+  schedule:
+    - cron: "0 9 * * 1"  # Mondays at 09:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch upstream distrobox-enter
+        id: fetch
+        run: |
+          set -euo pipefail
+          upstream_url="https://raw.githubusercontent.com/89luca89/distrobox/main/distrobox-enter"
+          mkdir -p scripts/upstream
+          curl -fsSL "${upstream_url}" -o /tmp/distrobox-enter.upstream
+          echo "downloaded=true" >> "$GITHUB_OUTPUT"
+        shell: bash
+
+      - name: Detect changes vs baseline
+        id: detect
+        run: |
+          set -euo pipefail
+          baseline="scripts/upstream/distrobox-enter.upstream"
+          if diff -q /tmp/distrobox-enter.upstream "${baseline}" >/dev/null 2>&1; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            cp /tmp/distrobox-enter.upstream "${baseline}"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+        shell: bash
+
+      - name: Create PR
+        if: steps.detect.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore: refresh upstream distrobox-enter baseline"
+          title: "chore: refresh upstream distrobox-enter baseline"
+          body: |
+            Automated refresh of `scripts/upstream/distrobox-enter.upstream` from upstream.
+
+            Reminder: `scripts/devbox-enter` is a fork that applies env vars via `env` after `su` to preserve XAUTHORITY/GUI vars. Keep that behavior when rebasing onto upstream changes.
+          branch: chore/update-upstream-distrobox-enter
+          labels: |
+            automation
+            upstream-sync

@@ -29,7 +29,7 @@ jq = "1.8.1"
 eza = "0.22.0"
 awscli = "2.32.4"
 kubectl = "1.34.2"
-terraform = "1.14.0"
+terraform = "1.14.3"
 
 [hooks]
 postinstall = '''
